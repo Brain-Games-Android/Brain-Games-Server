@@ -5,7 +5,7 @@ CREATE DATABASE quiz
 USE quiz;
 
 CREATE TABLE IF NOT EXISTS `users` (
-	`user_id` INT(5) NOT NULL,
+	`user_id` INT(5) NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(20) NOT NULL,
     `first_name` VARCHAR (35) NOT NULL,
     `last_name` VARCHAR (35) NOT NULL,
@@ -13,13 +13,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 );
 
 CREATE TABLE IF NOT EXISTS `difficulties` (
-	`difficulty_id` INT(1) NOT NULL,
+	`difficulty_id` INT(1) NOT NULL AUTO_INCREMENT,
     `difficulty` VARCHAR(10) NOT NULL,
     PRIMARY KEY (`difficulty_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `subjects` (
-	`subject_id` int(3) NOT NULL,
+	`subject_id` int(3) NOT NULL AUTO_INCREMENT,
 	`subject` VARCHAR(30) NOT NULL,
 	PRIMARY KEY (`subject_id`)
 );
@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 CREATE TABLE IF NOT EXISTS `questions` (
 	`question_id` INT(5) NOT NULL AUTO_INCREMENT,
     `question` TEXT CHARACTER SET utf8 NOT NULL,
-    `answer` VARCHAR(255) NOT NULL,
 	`subject_id` int(3) NOT NULL,
     `difficulty_id` INT(1) NOT NULL,
 	FOREIGN KEY (`subject_id`) REFERENCES `subjects`(`subject_id`),
