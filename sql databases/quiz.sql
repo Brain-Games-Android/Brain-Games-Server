@@ -42,3 +42,32 @@ CREATE TABLE IF NOT EXISTS `question_choices` (
     FOREIGN KEY (`question_id`) REFERENCES `questions`(`question_id`),
     PRIMARY KEY (`choice_id`)
 );
+
+CREATE TABLE IF NOT EXISTS `stats` (
+	`stats_id` INT(5) NOT NULL AUTO_INCREMENT,
+    `user_id` VARCHAR(20) NOT NULL,
+    `score` INT(2) NOT NULL,
+	`subject_id` int(3) NOT NULL,
+    `difficulty_id` INT(1) NOT NULL,
+	PRIMARY KEY (`stats_id`),
+	FOREIGN KEY (`subject_id`) REFERENCES `subjects`(`subject_id`),
+	FOREIGN KEY (`difficulty_id`) REFERENCES `difficulties`(`difficulty_id`)
+
+);
+
+insert into subjects (subject) values ('CS');
+insert into subjects (subject) values ('FOOTBALL');
+
+insert into difficulties (difficulty) values ('NOOB');
+insert into difficulties (difficulty) values ('KOURKOS');
+
+insert into users (username,first_name,last_name) values ('egw','egw','eimai');
+
+insert into questions (question,subject_id,difficulty_id) values ('how are u?',1,1);
+
+insert into question_choices (choice,correct,question_id) values ('fine',1,1);
+insert into question_choices (choice,correct,question_id) values ('leave me alone',0,1);
+insert into question_choices (choice,correct,question_id) values ('what?',0,1);
+insert into question_choices (choice,correct,question_id) values ('....',0,1);
+
+insert into stats (user_id,score,subject_id,difficulty_id) values (1,9,1,1);
