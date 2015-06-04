@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS `stats` (
 	PRIMARY KEY (`stats_id`),
 	FOREIGN KEY (`subject_id`) REFERENCES `subjects`(`subject_id`),
 	FOREIGN KEY (`difficulty_id`) REFERENCES `difficulties`(`difficulty_id`)
-
 );
 
 insert into subjects (subject) values ('CS');
