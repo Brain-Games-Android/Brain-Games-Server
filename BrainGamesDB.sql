@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `quiz` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `quiz`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: quiz
+-- Host: localhost    Database: quiz
 -- ------------------------------------------------------
--- Server version	5.5.34
+-- Server version	5.6.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `difficulties` (
   `difficulty_id` int(1) NOT NULL AUTO_INCREMENT,
   `difficulty` varchar(10) NOT NULL,
   PRIMARY KEY (`difficulty_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `difficulties` (
 
 LOCK TABLES `difficulties` WRITE;
 /*!40000 ALTER TABLE `difficulties` DISABLE KEYS */;
-INSERT INTO `difficulties` VALUES (1,'NOOB'),(2,'KOURKOS');
+INSERT INTO `difficulties` VALUES (1,'easy'),(2,'medium'),(3,'hard');
 /*!40000 ALTER TABLE `difficulties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `question_choices` (
   PRIMARY KEY (`choice_id`),
   KEY `question_id` (`question_id`),
   CONSTRAINT `question_choices_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `question_choices` (
 
 LOCK TABLES `question_choices` WRITE;
 /*!40000 ALTER TABLE `question_choices` DISABLE KEYS */;
-INSERT INTO `question_choices` VALUES (1,'fine',1,1),(2,'leave me alone',0,1),(3,'what?',0,1),(4,'....',0,1);
+INSERT INTO `question_choices` VALUES (1,'lenovo',0,1),(2,'fujitsu',0,1),(3,'plaisio',0,1),(4,'HTC',1,1),(5,'den kserw',0,2),(6,'ase me',0,2),(7,'metafora dedomenwn mesw tou web',1,2),(8,'algorithmos taksinomishs',0,2),(9,'HTTP',0,3),(10,'FTP',0,3),(11,'UDP',0,3),(12,'TCP',1,3),(13,'Intel',0,4),(14,'8051',0,4),(15,'Nvidia',1,4),(16,'MiniMIPS',0,4),(17,'C++',1,5),(18,'C',0,5),(19,'Pascal',0,5),(20,'Assembly',0,5),(21,'Linux',0,6),(22,'Windows',0,6),(23,'VMWare',1,6),(24,'Macintosh',0,6),(25,'ADONIS',1,7),(26,'Notepad',0,7),(27,'Notepad++',0,7),(28,'Atom',0,7),(29,'Razer',1,8),(30,'Microsoft',0,8),(31,'Cooler Master',0,8),(32,'Natec',0,8),(33,'Nessus',1,9),(34,'Avira',0,9),(35,'Norton',0,9),(36,'Avast',0,9),(37,'Buble Sort',1,10),(38,'Caesar',0,10),(39,'Substitution',0,10),(40,'Vigenere',0,10),(41,'cout',0,11),(42,'emfanise',0,11),(43,'printf',1,11),(44,'li $v0,11',0,11),(45,'Iceweasel',0,12),(46,'Chrome',0,12),(47,'Opera',0,12),(48,'AVG',1,12);
 /*!40000 ALTER TABLE `question_choices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `questions` (
   KEY `difficulty_id` (`difficulty_id`),
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`),
   CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`difficulty_id`) REFERENCES `difficulties` (`difficulty_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,'how are u?',1,1);
+INSERT INTO `questions` VALUES (1,'how are u?',1,2),(2,'ti einai to webservice?',1,2),(3,'\"triplh xeirapsia\", protokolo',1,2),(4,'poia den einai marka epeksergasth?',1,2),(5,'poia einai antikeimenostrafh glwssa programmatismou?',1,2),(6,'poio apo ta parakatw den einai anoixto leitourgiko systhma?',1,2),(7,'poio apo ta parakatw software uposthrizei anaparastash kai eksomoiwsh diadikasiwn?',1,2),(8,'poia einai h pio epituhmenh marka periferiakwn gia gaming?',1,2),(9,'poio apo ta parakatw den einai antivirus?',1,2),(10,'poios apo tous parakatw den einai kryptografikos algorithmos?',1,2),(11,'me poia synarthsh emfanizoyme sthn othonh me thn glwssa C?',1,3),(12,'poio apo ta parakatw den einai fylometrhths?',1,2);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `stats` (
   KEY `difficulty_id` (`difficulty_id`),
   CONSTRAINT `stats_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`),
   CONSTRAINT `stats_ibfk_2` FOREIGN KEY (`difficulty_id`) REFERENCES `difficulties` (`difficulty_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `stats` (
 
 LOCK TABLES `stats` WRITE;
 /*!40000 ALTER TABLE `stats` DISABLE KEYS */;
-INSERT INTO `stats` VALUES (1,'1',9,1,1);
+INSERT INTO `stats` VALUES (1,'1',9,1,1),(2,'2',-1,2,1),(3,'3',-1,2,1),(4,'4',-1,1,1),(5,'5',-1,1,1),(6,'6',-1,2,1),(7,'7',-1,1,1);
 /*!40000 ALTER TABLE `stats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +141,7 @@ CREATE TABLE `subjects` (
   `subject_id` int(3) NOT NULL AUTO_INCREMENT,
   `subject` varchar(30) NOT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `subjects` (
 
 LOCK TABLES `subjects` WRITE;
 /*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
-INSERT INTO `subjects` VALUES (1,'CS'),(2,'FOOTBALL');
+INSERT INTO `subjects` VALUES (1,'cs'),(2,'football'),(3,'cinema'),(4,'basket'),(5,'history');
 /*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `users` (
   `first_name` varchar(35) NOT NULL,
   `last_name` varchar(35) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,13 +176,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'egw','egw','eimai');
+INSERT INTO `users` VALUES (1,'egw','egw','eimai'),(2,'mpampis','ff','gg'),(3,'mpampis','ff','gg'),(4,'mpampis','ff','gg'),(5,'mpampis','ff','gg'),(6,'mpampis','ff','gg'),(7,'mpampis','ff','gg');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'quiz'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -193,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-04 18:19:43
+-- Dump completed on 2015-06-05 14:05:00
