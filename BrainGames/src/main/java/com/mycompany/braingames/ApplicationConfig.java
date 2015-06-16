@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.mycompany.braingames.CheckResultsResource.class);
         resources.add(com.mycompany.braingames.GetSettings.class);
         resources.add(com.mycompany.braingames.Post_Subjects_Difficulties.class);
     }

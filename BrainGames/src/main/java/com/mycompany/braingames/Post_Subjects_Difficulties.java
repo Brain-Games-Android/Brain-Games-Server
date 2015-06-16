@@ -17,6 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * REST Web Service
@@ -27,7 +28,7 @@ import javax.ws.rs.Produces;
 public class Post_Subjects_Difficulties {
 
     @Context
-    private UriInfo context;
+    private UriInfo context; 
 
     /**
      * Creates a new instance of Post_Subjects_Difficulties
@@ -38,7 +39,7 @@ public class Post_Subjects_Difficulties {
 
 
     @GET
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public String putJson() {
         try {
             SingletonMysqlConnection dbcon =SingletonMysqlConnection.getDbCon();
@@ -53,17 +54,17 @@ public class Post_Subjects_Difficulties {
              
             while(rs1.next())
             { 
-               res=res+gson.toJson(rs1.getString("difficulty"));
+               res=res+gson.toJson(rs1.getString("difficulty"))+"#";
             }
             
             res=res+"#";
             
             while(rs2.next()){
-                res=res+gson.toJson(rs2.getString("subject"));
+                res=res+gson.toJson(rs2.getString("subject"))+"#";
             }
             
 
-            return res;
+            return res.substring(0, res.length()-1);
         } catch (SQLException e) {
             return new Gson().toJson("well....shit");
         }
