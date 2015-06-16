@@ -187,7 +187,7 @@ INSERT INTO `question_choices` (choice, correct, question_id) VALUES
 	('ADONIS', 1, 7),('Notepad', 0, 7), ('Notepad++', 0, 7), ('Atom', 0, 7),
 	('Οπτικού δίσκου', 0, 8), ('Μαγνητο-ομπτικού δίσκου', 0, 8), ('Μαγνητικού δίσκου', 1, 8), ('Τίποτα από τα προτεινόμενα', 0, 8),
 	('Nessus', 1, 9), ('Avira', 0, 9), ('Norton', 0, 9), ('Avast', 0, 9),
-	('Buble Sort', 1, 10), ('Caesar',0,10), ('Substitution', 0, 10), ('Vigenere', 0, 10),
+	('Bubble Sort', 1, 10), ('Caesar',0,10), ('Substitution', 0, 10), ('Vigenere', 0, 10),
 	('cout', 0, 11), ('emfanise', 0, 11), ('printf', 1, 11), ('li $v0,11', 0, 11),
 	('Iceweasel', 0, 12), ('Chrome', 0, 12), ('Opera', 0, 12), ('AVG', 1, 12),
 
@@ -285,6 +285,28 @@ INSERT INTO `question_choices` VALUES
 DROP TABLE IF EXISTS `stats`;
 CREATE TABLE IF NOT EXISTS `stats` (
 	`stats_id` INT(5) NOT NULL AUTO_INCREMENT,
+    `user_id` INT(5) NOT NULL,
+    `score` INT(2) NOT NULL,
+	`subject_id` int(3) NOT NULL,
+    `difficulty_id` INT(1) NOT NULL,
+	PRIMARY KEY (`stats_id`),
+	FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
+	FOREIGN KEY (`subject_id`) REFERENCES `subjects`(`subject_id`),
+	FOREIGN KEY (`difficulty_id`) REFERENCES `difficulties`(`difficulty_id`)
+);
+INSERT INTO `stats` VALUES
+	(1,1,9,1,1),
+	(2,2,-1,2,1),
+	(3,3,-1,2,1),
+	(4,4,-1,1,1),
+	(5,5,-1,1,1),
+	(6,6,-1,2,1),
+	(7,7,-1,1,1);
+
+/*
+DROP TABLE IF EXISTS `stats`;
+CREATE TABLE IF NOT EXISTS `stats` (
+	`stats_id` INT(5) NOT NULL AUTO_INCREMENT,
     `user_id` VARCHAR(20) NOT NULL,
     `score` INT(2) NOT NULL,
 	`subject_id` int(3) NOT NULL,
@@ -301,3 +323,4 @@ INSERT INTO `stats` VALUES
 	(5,'5',-1,1,1),
 	(6,'6',-1,2,1),
 	(7,'7',-1,1,1);
+*/
