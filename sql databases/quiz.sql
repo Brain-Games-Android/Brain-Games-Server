@@ -27,13 +27,14 @@ DROP TABLE IF EXISTS `difficulties`;
 CREATE TABLE IF NOT EXISTS `difficulties` (
 	`difficulty_id` INT(1) NOT NULL AUTO_INCREMENT,
     `difficulty` VARCHAR(10) NOT NULL,
+	`time` INT(3) NOT NULL,
     PRIMARY KEY (`difficulty_id`)
 );
 
-INSERT INTO `difficulties` VALUES
-	(1,'easy'),
-	(2,'medium'),
-	(3,'hard');
+INSERT INTO `difficulties` (difficulty, time) VALUES
+	('easy', 120),
+	('medium', 90),
+	('hard', 60);
 
 
 DROP TABLE IF EXISTS `subjects`;
@@ -88,7 +89,7 @@ INSERT INTO `questions` (question, subject_id, difficulty_id) VALUES
 	/*21*/('Assume that a mergesort algorithm in the worst case takes 30 seconds for an input of size 64. Which of the following most closely approximates the maximum input size of a problem that can be solved in 6 minutes?', 1, 3),
 	/*22*/('In C++, const qualifier can be applied to 1) Member functions of a class 2) Function arguments 3) To a class data member which is declared as static 4) Reference variables', 1, 3),
 	/*23*/('The most efficient algorithm for finding the number of connected components in an undirected graph on n vertices and m edges has time complexity.', 1, 3),
-	/*24*/('Convert the .WORD d#790 assemblylanguage pseudo-ops into hexadecimal machine language', 1, 3),
+	/*24*/('Ποιές συνδέσεις πρέπει να βραχυκυκλώσουμε σε ένα τροφοδοτικό για να εξετάσουμε αν λειτουργεί ή έχει καεί;', 1, 3),
 
 	-- Easy
 	/*25*/('In Linux, what command is used to remove files?', 1, 1),
@@ -203,7 +204,7 @@ INSERT INTO `question_choices` (choice, correct, question_id) VALUES
 	('256', 0, 21), ('512', 1, 21), ('1024', 0, 21), ('2048', 0, 21),
 	('Only 1, 2 and 3', 0, 22), ('Only 1, 2 and 4', 0, 22), ('All', 1, 22), ('Only 1, 3 and 4', 0, 22),
 	('θ(n)', 0, 23), ('θ(m)', 0, 23), ('θ(m + n)', 1, 23), ('θ(m * n)', 0, 23),
-	('0111EF', 0, 24), ('F8', 0, 24), ('42 65 61 72', 0, 24), ('03 16', 1, 24),
+	('πράσινο,μαύρο', 1, 24), ('Κόκκινο,άσπρο', 0, 24), ('πράσινο,άσπρο', 0, 24), ('κίτρινο,μπλε', 1, 24),
 
 	-- Easy
 	('rm', 1, 25), ('dm', 0, 25), ('delete', 0, 25), ('erase', 0, 25),
@@ -251,13 +252,13 @@ INSERT INTO `question_choices` (choice, correct, question_id) VALUES
 
 	-- Hard
 	('Ρωσία', 0, 61), ('Γερμανία', 1, 61), ('Σουηδία', 0, 61), ('Ολλανδία', 0, 61),
-	('Καμία, ήταν ουδέτερη', 0, 62), ('Με την Γερμανία ενναντίον του Ηνωμένου Βασίλειου', 0, 62), ('Με το Ηνωμένο Βασίλειο εναντίον της Γερμανίας', 0, 62), ('Εναντίον της Ρωσίας, αλλά μόνη της', 0, 62),
+	('Καμία, ήταν ουδέτερη', 0, 62), ('Με την Γερμανία ενναντίον του Ηνωμένου Βασίλειου', 1, 62), ('Με το Ηνωμένο Βασίλειο εναντίον της Γερμανίας', 0, 62), ('Εναντίον της Ρωσίας, αλλά μόνη της', 0, 62),
 	('Μακεδονία και Θράκη', 1, 63), ('Θράκη και Μικρά Ασία', 0, 63), ('Μικρά Ασία και Συρία', 0, 63), ('Συρία και Παλαιστίνη', 0, 63),
 	('Σαραγόσα', 0, 64), ('Μούρθια', 0, 64), ('Τολέντο', 0, 64), ('Βαλένθια', 1, 64),
 	('Λυσίμαχος', 1, 65), ('Αντίγονος', 0, 65), ('Σέλευκος', 0, 65), ('Πτολεμαίος', 0, 65),
 	('Νιγηρία', 0, 66), ('Σενεγκάλ', 0, 66), ('Γκάνα', 1, 66), ('Ακτή Ελεφαντοστού', 0, 66),
 	('Θήβa', 0, 67), ('Σπάρτη', 0, 67), ('Αθήνα', 1, 67), ('Ρόδος', 0, 67),
-	('Οι Κέλτες', 0, 68), ('Οι Φοίνικες', 0, 68), ('Οι Ρωμαίοι', 0, 68), ('Οι Έλληνες', 0, 68),
+	('Οι Κέλτες', 0, 68), ('Οι Φοίνικες', 1, 68), ('Οι Ρωμαίοι', 0, 68), ('Οι Έλληνες', 0, 68),
 	('2000 Π.Χ. - 1500 Π.Χ.', 1, 69), ('1500 Π.Χ. - 1100 - Π.Χ.', 0, 69), ('2600 Π.Χ. - 2000 Π.Χ.', 0, 69), ('4000 Π.Χ. - 3000 Π.Χ.', 0, 69),
 	('να υπηρετήσω', 1, 70), ('να οδηγήσω', 0, 70), ('να θυσιάσω', 0, 70), ('να πολεμήσω', 0, 70),
 	('Λιβύη', 1, 71), ('Αιθιοπία', 0, 71), ('Νότια Αφρική', 0, 71), ('Λιβερία', 0, 71),
