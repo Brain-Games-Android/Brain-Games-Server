@@ -47,7 +47,7 @@ public class GetSettings {
     @Path("{un}/{fn}/{ln}/{sub}/{dif}")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public String getJson(@PathParam("un") String un, @PathParam("fn") String fn, @PathParam("ln") String ln, @PathParam("sub") String sub, @PathParam("dif") String dif) {
-        int user_id, sub_id, dif_id,dif_time=0;
+        int user_id, sub_id, dif_id;
         try {
             SingletonMysqlConnection dbcon = SingletonMysqlConnection.getDbCon();
 
@@ -72,12 +72,11 @@ public class GetSettings {
             }
 
             String sqlString3 = "select subject_id from subjects where subject='" + sub + "'";
-            System.out.println(sqlString3);
             ResultSet rs3 = dbcon.query(sqlString3);
             if (rs3.next()) {
                 sub_id = rs3.getInt(1);
             } else {
-                return new Gson().toJson("bad select 2!"+sqlString3);
+                return new Gson().toJson("bad select 2!");
             }
 
             String sqlString4 = "insert into stats (user_id,score,subject_id,difficulty_id) values (" + user_id + ",-1,'" + sub_id + "','" + dif_id + "');";
@@ -151,7 +150,7 @@ public class GetSettings {
 //                    System.out.println("HOHO "+random10[lo] +" " + q_id[lo] + " " + questions[lo] );
 //                }
                 for(int lo=0;lo<10;lo++){
-                    //System.out.println("HOHO "+random10[lo] +" " + q_id[lo] + " " + questions[lo] );
+                    System.out.println("HOHO "+random10[lo] +" " + q_id[lo] + " " + questions[lo] );
                     
                     res+=q_id[random10[lo]]+"#"+questions[random10[lo]]+"#";
                     
@@ -168,22 +167,7 @@ public class GetSettings {
                     }
 
                 }
-                
-                String sqlString77 = "select time from difficulties where difficulty_id=" + dif_id + "; ";//q_id[lo] + "'; ";
-                    System.out.println(sqlString77); 
-                    ResultSet rs77 = dbcon.query(sqlString77);
-                if(rs77.next()){
-                    dif_time=rs77.getInt("time");
-                }
-                else{
-                    System.out.println("not possible");
-                }
-                if(rs77.next()){
-                    System.out.println("not possible as well");
-                }
-                    
-                    
-            return res+"#"+stats_id+"##"+dif_time; // erwthsh#ap1#ap2#ap3#ap4#id erwthshs#anagnwristiko xrhsth ston pinaka stats
+            return res+"#"+stats_id; // erwthsh#ap1#ap2#ap3#ap4#id erwthshs#anagnwristiko xrhsth ston pinaka stats
         } catch (SQLException e) {
             return new Gson().toJson(e.getMessage());
         }
