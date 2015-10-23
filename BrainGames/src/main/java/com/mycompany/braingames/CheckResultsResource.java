@@ -63,13 +63,18 @@ public class CheckResultsResource {
                 
                 if(rs1.next()){
                     correct_answer=rs1.getString("choice");
-                    if(correct_answer.equalsIgnoreCase(ans[i])){
-                        count++;
+                    //System.out.println(i+" "+"MWREE  "+correct_answer+" "+correct_answer.replaceAll(" ", "+")+" "+ans[i]);
+//                    if(correct_answer.equalsIgnoreCase(ans[i])){
+                    if(correct_answer.equalsIgnoreCase(ans[i]) || correct_answer.replaceAll(" ", "+").equalsIgnoreCase(ans[i])){
+                        count++;//System.out.println("INNN");
                     }
                     else{
                         correct_wrong_answers[i] = correct_answer;
                         //j++;
                     }
+                }
+                else{
+                    System.out.println(i+" "+id[i]+" "+ans[i]);
                 }
                 if(rs1.next()){
                     System.out.println("WUT MPALALAIKA!");
