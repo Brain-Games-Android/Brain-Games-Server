@@ -1,0 +1,5 @@
+com\mycompany\braingames\ApplicationConfig.class
+com\mycompany\braingames\GetSettings.class
+com\mycompany\braingames\CheckResultsResource.class
+com\mycompany\braingames\SingletonMysqlConnection.class
+com\mycompany\braingames\Post_Subjects_Difficulties.class
